@@ -18,15 +18,26 @@ const data = [
 ];
 
 function bindState() {
-    let countryValue = document.getElementById("country").value;
-    let displayValue = data.find((value)=>{
-        return value.country == countryValue;
-    }) 
-    let displayState = displayValue.states.map((value1)=>{
-        return `<option value="${value1}">${value1}</option>`
+    let inputValue = document.getElementById("country").value;
+
+    let changeCountry = data.find((value)=>{
+        return value.country == inputValue;
+    }).states.map((value2)=>{
+        return `<option value="${value2}">${value2}</option>`
     })
-    document.getElementById("state").innerHTML = displayState.join(" ");
-    bindCity(displayValue.cities)
+    document.getElementById("state").innerHTML = changeCountry.join(" ");
+}
+
+function bindCity() {
+    let inputValue = document.getElementById("country").value;
+    let inputValue1 = document.getElementById("state").value;
+
+    let changeCity = data.find((value)=>{
+        return value.country == inputValue;
+    }).cities[inputValue1].map((value2)=>{
+        return `<option value="">${value2}</option>`
+    })
+    document.getElementById("city").innerHTML = changeCity.join(" ");
 }
 
 
